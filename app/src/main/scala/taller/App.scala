@@ -5,8 +5,19 @@ package taller
 
 object App {
   def main(args: Array[String]): Unit = {
-    println(greeting())
+
+    val cd = new ConjuntosDifusos()
+    val grande = cd.grande(1, 2) 
+
+    val valores = List(1, 5, 10, 50, 100)
+
+    println("\nGrados de pertenencia al conjunto 'grande':")
+    for (v <- valores) {
+      val grado = cd.pertenece(v, grande)
+      println(s"$v -> $grado")
+    }
   }
 
   def greeting(): String = "Hello, world!"
 }
+
