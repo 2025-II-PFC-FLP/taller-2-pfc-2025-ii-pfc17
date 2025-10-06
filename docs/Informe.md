@@ -4,7 +4,7 @@
 **Programa:** Tecnología en Desarrollo de Software  
 **Asignatura:** Programación Funcional y Concurrente  
 **Estudiante:** Christian David Trujillo 2569134
-                David Naranjo *codigo jajaja*
+                David Naranjo 2569497
 **Fecha:** 05/10/2025  
 
 ---
@@ -35,40 +35,9 @@ Esto significa que cada conjunto difuso es una **aplicación matemática directa
 
 ---
 
-## 3. Operaciones matemáticas y su corrección
 
-**Pertenencia:**
-Matemáticamente se define como \( \mu_A(x) = A(x) \).
-En la implementación funcional, se expresa como def pertenece(elem, s) = s(elem).
-Esta función simplemente devuelve el valor de pertenencia del elemento en el conjunto, por lo que actúa como una identidad funcional, garantizando corrección directa.
 
-**Complemento:**
-La definición es \( \mu_{A^c}(x) = 1 - \mu_A(x) \).
-En el código, se implementa como (n: Int) => 1.0 - c(n).
-Dado que los valores de pertenencia están en el rango \([0, 1]\), al restarlos de 1 se preserva ese mismo rango, asegurando que el resultado siga siendo un conjunto difuso válido.
-
-**Unión:**
-La definición matemática es \( \mu_{A \cup B}(x) = \max(\mu_A(x), \mu_B(x)) \).
-Su versión funcional es (n: Int) => math.max(cd1(n), cd2(n)).
-El uso de max mantiene los valores dentro del intervalo \([0, 1]\) y garantiza las propiedades conmutativa y asociativa de la unión difusa.
-
-**Intersección:**
-Definida como \( \mu_{A \cap B}(x) = \min(\mu_A(x), \mu_B(x)) \).
-En el código: (n: Int) => math.min(cd1(n), cd2(n)).
-La función min también preserva las cotas del dominio y cumple las propiedades conmutativa y asociativa, por lo que su implementación es correcta.
-
-**Inclusión:**
-La relación \( A \subseteq B \iff \forall x,\ \mu_A(x) \le \mu_B(x) \) se implementa con una función recursiva que compara cada punto hasta un límite finito.
-Si en todo el dominio se cumple \( \mu_A(x) \le \mu_B(x) \), la función retorna true.
-Su corrección se justifica por inducción sobre el dominio, ya que la función revisa cada caso sucesivamente.
-
-**Igualdad:**
-Dos conjuntos son iguales si \( |\mu_A(x) - \mu_B(x)| < \varepsilon \), con una tolerancia \( \varepsilon = 10^{-5} \).
-La función implementada compara los valores de pertenencia con esa tolerancia, asegurando una igualdad aproximada entre funciones continuas.
-
----
-
-## 4. Pila de llamadas (Call Stack) en funciones recursivas
+## 3. Pila de llamadas (Call Stack) en funciones recursivas
 
 La única función recursiva es `inclusion`.  
 Se usa **recursión de cola (tail recursion)**, lo cual significa que el compilador puede optimizar la recursión para no consumir pila adicional.
@@ -124,7 +93,7 @@ graph TD
 
 ---
 
-## 5. Pruebas y corrección empírica
+## 4. Pruebas y corrección empírica
 
 Los **6 tests automáticos** de ScalaTest confirman la validez funcional y matemática de las operaciones:
 
@@ -142,26 +111,8 @@ Los **6 tests automáticos** de ScalaTest confirman la validez funcional y matem
 
 ---
 
-## 6. Argumento formal de corrección
 
-La corrección del código puede demostrarse mediante **inducción estructural**:
-
-1. **Caso base:**  
-   Para `n = 0`, `loop(0)` compara \( cd1(0) \le cd2(0) \).  
-   Si se cumple, continúa; de lo contrario, retorna `false`.  
-
-2. **Paso inductivo:**  
-   Supongamos que para un `n = k` la función es correcta.  
-   Entonces, para `n = k + 1`, se evalúa nuevamente y se cumple la misma condición recursiva.  
-   Por lo tanto, la corrección se mantiene para todo `n ≤ limite`.
-
-\[
-\forall n \in [0, limite], cd1(n) \le cd2(n) \implies inclusion(cd1, cd2, limite) = \text{true}
-\]
-
----
-
-## 7. Conclusiones
+## 6. Conclusiones
 
 - El programa cumple los principios de **programación funcional pura**.  
 - Todas las operaciones están **matemáticamente justificadas** y correctamente implementadas.  
