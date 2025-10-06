@@ -112,7 +112,7 @@ Los **6 tests automáticos** de ScalaTest confirman la validez funcional y matem
 ---
 
 
-## 5. Conclusiones
+## 6. Conclusiones
 
 - El programa cumple los principios de **programación funcional pura**.  
 - Todas las operaciones están **matemáticamente justificadas** y correctamente implementadas.  
